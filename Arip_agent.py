@@ -536,7 +536,7 @@ async def startup_handler(ctx: Context):
     SEED_PHRASE = os.environ.get("SEED_PHASE", "")
     if AGENTVERSE_KEY and SEED_PHRASE:
         try:
-            with open("readme.md", "r") as f:
+            with open("README.md", "r") as f:
                 readme_content = f.read()
             # Default endpoint for mailbox-connected agents
             endpoint_url = "https://agentverse.ai"
