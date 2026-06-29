@@ -42,6 +42,11 @@ from uagents_core.utils.registration import (
 )
 
 # --- Agent Initialization ---
+try:
+    asyncio.get_event_loop()
+except RuntimeError:
+    asyncio.set_event_loop(asyncio.new_event_loop())
+
 if ASI_API_KEY:
     # Hosted Mailbox mode - Pro Fetch.ai setup
     arip_agent = Agent(
