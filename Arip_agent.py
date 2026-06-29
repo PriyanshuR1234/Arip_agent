@@ -538,8 +538,8 @@ async def startup_handler(ctx: Context):
         try:
             with open("readme.md", "r") as f:
                 readme_content = f.read()
-            # If agent runs with a mailbox, endpoints might be empty or mapped to agentverse
-            endpoint_url = ctx.agent._endpoints[0].url if ctx.agent._endpoints else "https://agentverse.ai"
+            # Default endpoint for mailbox-connected agents
+            endpoint_url = "https://agentverse.ai"
             register_chat_agent(
                 ctx.agent.name,
                 endpoint_url,
