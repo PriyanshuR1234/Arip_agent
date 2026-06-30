@@ -11,7 +11,6 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage
 
 from uagents import Agent, Context, Model, Protocol
-from uagents.setup import fund_agent_if_low
 
 import uagents.agent
 # Removed interceptors - using official ACP models instead
@@ -65,8 +64,11 @@ else:
         endpoint=["http://127.0.0.1:8006/submit"]
     )
 
-fund_agent_if_low(arip_agent.wallet.address())
-
+try:
+    from uagents.setup import fund_agent_if_low
+    fund_agent_if_low(arip_agent.wallet.address())
+except Exception as e:
+    print(f"⚠️ Could not fund agent from testnet faucet (network issue): {e}")
 # --- Tools Definition ---
 
 async def verify_user(email: str, password: str):
